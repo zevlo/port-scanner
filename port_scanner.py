@@ -27,3 +27,12 @@ def main(host: str, start_port: int, end_port: int) -> None:
         t.start()
     queue.join()
     print("Scanning completed.")
+
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser(description='TCP Port Scanner')
+    parser.add_argument('host', help='Host to scan')
+    parser.add_argument('ports', help='Port range to scan, formatted as start-end')
+    args = parser.parse_args()
+
+    start_port, end_port = map(int, args.ports.split('-'))
+    main(args.host, start_port, end_port)
